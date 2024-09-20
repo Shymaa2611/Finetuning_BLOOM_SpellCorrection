@@ -24,7 +24,7 @@ def Trainer(train_loader, validation_loader,model, lora_config):
     trainer = SFTTrainer(
         args=args,
         train_dataset=train_loader.dataset,
-        validation_dataset=validation_loader.dataset,
+        #validation_dataset=validation_loader.dataset,
         model=model,
         peft_config=lora_config,
         dataset_text_field="clean",  
