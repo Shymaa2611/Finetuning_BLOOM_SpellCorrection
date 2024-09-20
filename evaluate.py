@@ -23,29 +23,38 @@ def spell_correct(input_text, model, tokenizer, max_len=150):
     corrected_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return corrected_text
 
-def evaluate_model(model, tokenizer, test_loader):
-    bleu = load_metric("sacrebleu")  
-    correct_count = 0
-    total_count = 0
-    predictions = []
-    references = []
+from datasets import load_metric
 
+def evaluate_model(model, tokenizer, test_loader):
+    # Load the BLEU metric
+    bleu_metric = load_metric("sacrebleu")
+    
     model.eval()
-    for batch in tqdm(test_loader):
-        input_ids = batch['input_ids'].to(model.device)
-        attention_mask = batch['attention_mask'].to(model.device)
-        labels = batch['labels'].to(model.device)
-        clean_texts = [tokenizer.decode(label, skip_special_tokens=True) for label in labels]
-        distorted_texts = [tokenizer.decode(input_id, skip_special_tokens=True) for input_id in input_ids]
-        for distorted_text, clean_text in zip(distorted_texts, clean_texts):
-            predicted_text = spell_correct(distorted_text, model, tokenizer)
-            predictions.append(predicted_text)
-            references.append([clean_text])  
-            if predicted_text.strip() == clean_text.strip():
-                correct_count += 1
-            total_count += 1
-    accuracy = correct_count / total_count
-    bleu_score = bleu.compute(predictions=predictions, references=references)
+    total_accuracy = 0
+    total_bleu_score = 0
+    num_samples = 0
+
+    for batch in test_loader:
+        input_ids = batch['input_ids']
+        attention_mask = batch['attention_mask']
+        labels = batch['labels']
+
+        with torch.no_grad():
+            outputs = model.generate(input_ids=input_ids, attention_mask=attention_mask)
+        
+        decoded_preds = tokenizer.batch_decode(outputs, skip_special_tokens=True)
+        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+
+        # Calculate accuracy
+        total_accuracy += sum(pred == label for pred, label in zip(decoded_preds, decoded_labels))
+        num_samples += len(decoded_labels)
+
+        # Update BLEU score
+        bleu_metric.add_batch(predictions=decoded_preds, references=decoded_labels)
+
+    # Calculate final metrics
+    accuracy = total_accuracy / num_samples if num_samples > 0 else 0
+    bleu_score = bleu_metric.compute()['score']  # This will give the BLEU score
 
     return accuracy, bleu_score
 

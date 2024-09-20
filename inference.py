@@ -3,6 +3,7 @@ from transformers import BloomTokenizerFast, BloomForCausalLM
 
 def load_model_and_tokenizer(model_path):
     model = BloomForCausalLM.from_pretrained(model_path)
+    tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloomz-560m")
     return model, tokenizer
 
 def spell_correct(input_text, model, tokenizer, max_len=150):
