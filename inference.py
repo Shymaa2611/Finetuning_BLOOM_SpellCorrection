@@ -21,7 +21,7 @@ def spell_correct(input_text, model, tokenizer, max_len=150):
 if __name__ == "__main__":
     model_path = "/kaggle/working/Finetuning_BLOOM_SpellCorrection/Finetuning_BLOOM_SpellCorrection/bloomspellCorrection/checkpoint-874"
     model, tokenizer = load_model_and_tokenizer(model_path)
-    input_sentence = "Ths is a sentnce with speling erors."
+    input_sentence = "rea"
     corrected_sentence = spell_correct(input_sentence, model, tokenizer)
 
     print(f"Original: {input_sentence}")
