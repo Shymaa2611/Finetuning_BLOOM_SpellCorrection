@@ -4,3 +4,4 @@ Transformers
 Pandas
 Scikit-learn
 tqdm
+datasets
