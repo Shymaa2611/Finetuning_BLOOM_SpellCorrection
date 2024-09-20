@@ -17,9 +17,10 @@ def spell_correct(input_text, model, tokenizer, max_len=20):
             inputs['input_ids'].to(model.device),
             max_length=max_len,
             num_return_sequences=1,
-            early_stopping=True
+            early_stopping=True, 
+            max_new_tokens=50
         )
-    
+   
     corrected_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return corrected_text
 
