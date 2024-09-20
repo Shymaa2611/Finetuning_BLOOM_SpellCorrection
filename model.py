@@ -20,12 +20,3 @@ def model_Quantization():
     
     )
     return model, tokenizer
-
-def Lora_Configuration():
-  lora_config=LoraConfig(
-    r=8,
-    target_modules=["q_proj", "o_proj", "k_proj", "v_proj", "gate_proj", "up_proj", "down_proj"],
-    task_type="CAUSAL_LM",
-   )
-  return lora_config
-

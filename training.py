@@ -18,7 +18,7 @@ def Training_Arguments():
     )
     return args
 
-def Trainer(train_loader, validation_loader,model, lora_config):
+def Trainer(train_loader, validation_loader,model):
     args = Training_Arguments()
     
     trainer = SFTTrainer(
@@ -26,7 +26,7 @@ def Trainer(train_loader, validation_loader,model, lora_config):
         train_dataset=train_loader.dataset,
         #validation_dataset=validation_loader.dataset,
         model=model,
-        peft_config=lora_config,
+        #peft_config=lora_config,
         dataset_text_field="clean",  
         packing=False  
     )
