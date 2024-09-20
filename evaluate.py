@@ -27,7 +27,7 @@ from datasets import load_metric
 
 def evaluate_model(model, tokenizer, test_loader):
     # Load the BLEU metric
-    bleu_metric = load_metric("bleu")
+    bleu_metric = load_metric("bleu",trust_remote_code=True)
     
     model.eval()
     total_accuracy = 0
