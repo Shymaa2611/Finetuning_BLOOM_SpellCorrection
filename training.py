@@ -2,7 +2,8 @@ from transformers import TrainingArguments,Trainer
 
 def Training_Arguments():
     args = TrainingArguments(
-        "bloomspellCorrection",
+        output_dir="bloomspellCorrection",
+        run_name= "bloomspellCorrection",
         learning_rate=2e-5,
         per_device_train_batch_size=2,
         num_train_epochs=2,
