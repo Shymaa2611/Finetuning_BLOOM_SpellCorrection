@@ -78,3 +78,4 @@ print(f"Corrected: {corrected_sentence}")
 
 
 ## Checkpoint
+can download from : https://drive.google.com/drive/folders/1WMYzNsIg0OIZqNERlw2VRifjZAF7QJhw?usp=drive_link
