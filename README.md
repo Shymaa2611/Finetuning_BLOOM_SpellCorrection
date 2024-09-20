@@ -38,8 +38,8 @@ You can install the required packages using pip:
 ## Dataset
 
 The model is fine-tuned on a custom dataset containing pairs of distorted (incorrect) and clean (correct) word. The dataset should be in CSV format with the following columns:
-    clean: The correct text.
-    distorted: The text with spelling errors.
+    clean: The correct word.
+    distorted: The word with spelling errors.
 
 ## Installation
 

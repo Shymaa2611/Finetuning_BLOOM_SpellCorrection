@@ -1,7 +1,6 @@
 from training import training
 from dataset import get_data
 from model import get_Model
-#from evaluate import evaluate
 def run(train_loader,model):
     trainer=training(train_loader,model)
     trainer.train()
