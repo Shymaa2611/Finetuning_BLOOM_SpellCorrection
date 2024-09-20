@@ -10,7 +10,8 @@ def Training_Arguments():
         fp16=True,
         optim="adafactor",
         gradient_accumulation_steps=4,
-        gradient_checkpointing=True
+        gradient_checkpointing=True,
+        report_to=None
     )
     return args
 
