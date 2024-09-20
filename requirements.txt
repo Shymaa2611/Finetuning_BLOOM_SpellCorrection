@@ -1,3 +1,6 @@
-datasets
-transformers
-accelerate
+Python 
+torch
+Transformers 
+Pandas
+Scikit-learn
+tqdm
