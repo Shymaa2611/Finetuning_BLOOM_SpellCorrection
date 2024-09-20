@@ -1,9 +1,9 @@
-from training import Trainer
+from training import training
 from dataset import get_data
 from model import model_Quantization
 #from evaluate import evaluate
 def run(train_loader,model):
-    trainer=Trainer(train_loader,model)
+    trainer=training(train_loader,model)
     trainer.train()
     
 
