@@ -66,6 +66,13 @@ To fine-tune the BLOOM model, run the following command:
 
 ``` python
 
+from inference import load_model_and_tokenizer,spell_correct
+model_path = "checkpoint"
+model, tokenizer = load_model_and_tokenizer(model_path)
+input_word = "rea"
+corrected_word = spell_correct(input_word, model, tokenizer)
+print(f"Original: {input_sentence}")
+print(f"Corrected: {corrected_sentence}")
 
 ```
 
