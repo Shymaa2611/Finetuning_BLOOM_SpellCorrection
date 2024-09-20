@@ -33,8 +33,6 @@ class CSVDataset(Dataset):
     def __getitem__(self, idx):
         text = str(self.dataframe.iloc[idx]['clean'])
         output = str(self.dataframe.iloc[idx]['distorted'])
-        
-        # Tokenize input text
         encoding_input = self.tokenizer(
             text,
             add_special_tokens=True,
@@ -44,7 +42,6 @@ class CSVDataset(Dataset):
             return_tensors='pt'
         )
         
-        # Tokenize target output text
         encoding_output = self.tokenizer(
             output,
             add_special_tokens=True,
@@ -54,7 +51,6 @@ class CSVDataset(Dataset):
             return_tensors='pt'
         )
         
-        # Format output as required by the trainer
         input_ids = encoding_input['input_ids'].squeeze()  
         attention_mask = encoding_input['attention_mask'].squeeze()
         labels = encoding_output['input_ids'].squeeze()

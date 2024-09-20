@@ -2,7 +2,8 @@ import torch
 from datasets import load_metric
 from transformers import BloomTokenizerFast, BloomForCausalLM
 from tqdm import tqdm
-from main import test_loader
+from dataset import get_data
+
 
 def load_model_and_tokenizer(model_path):
     model = BloomForCausalLM.from_pretrained(model_path)
@@ -51,6 +52,7 @@ def evaluate_model(model, tokenizer, test_loader):
 if __name__ == "__main__":
     model_path = "/kaggle/working/Finetuning_BLOOM_SpellCorrection/Finetuning_BLOOM_SpellCorrection/bloomspellCorrection/checkpoint-874"
     model, tokenizer = load_model_and_tokenizer(model_path)
+    train_data, test_data, train_loader, test_loader=get_data('EnglishDataset/data.csv',tokenizer)
     accuracy, bleu_score = evaluate_model(model, tokenizer, test_loader)
 
     print(f"Accuracy: {accuracy * 100:.2f}%")
