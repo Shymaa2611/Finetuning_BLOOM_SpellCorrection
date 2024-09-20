@@ -3,7 +3,6 @@ from transformers import BloomTokenizerFast, BloomForCausalLM
 
 def load_model_and_tokenizer(model_path):
     model = BloomForCausalLM.from_pretrained(model_path)
-    tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloomz-560m")
     return model, tokenizer
 
 def spell_correct(input_text, model, tokenizer, max_len=150):
@@ -21,7 +20,7 @@ def spell_correct(input_text, model, tokenizer, max_len=150):
 if __name__ == "__main__":
     model_path = "/kaggle/working/Finetuning_BLOOM_SpellCorrection/Finetuning_BLOOM_SpellCorrection/bloomspellCorrection/checkpoint-874"
     model, tokenizer = load_model_and_tokenizer(model_path)
-    input_sentence = "rea"
+    input_sentence = "lfose_off"
     corrected_sentence = spell_correct(input_sentence, model, tokenizer)
 
     print(f"Original: {input_sentence}")
