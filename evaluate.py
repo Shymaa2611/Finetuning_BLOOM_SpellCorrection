@@ -10,7 +10,7 @@ def load_model_and_tokenizer(model_path):
     tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloomz-560m")
     return model, tokenizer
 
-def spell_correct(input_text, model, tokenizer, max_len=20):
+def spell_correct(input_text, model, tokenizer, max_len=150):
     inputs = tokenizer(input_text, return_tensors='pt', max_length=max_len, truncation=True)
     with torch.no_grad():
         outputs = model.generate(
