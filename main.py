@@ -1,6 +1,6 @@
 from training import training
 from dataset import get_data
-from model import model_Quantization
+from model import get_Model
 #from evaluate import evaluate
 def run(train_loader,model):
     trainer=training(train_loader,model)
@@ -10,7 +10,7 @@ def run(train_loader,model):
 
 
 if __name__=="__main__":
-    model,tokenizer=model_Quantization()
+    model,tokenizer=get_Model()
     train_data, test_data, train_loader, test_loader=get_data('EnglishDataset/data.csv',tokenizer)
     run(train_loader,model)
 

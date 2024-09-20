@@ -1,7 +1,7 @@
 import torch
 from transformers import BloomTokenizerFast, BloomForCausalLM
 
-def model_Quantization():
+def get_Model():
     model_name = "bigscience/bloomz-560m"
    
     tokenizer = BloomTokenizerFast.from_pretrained(model_name)
