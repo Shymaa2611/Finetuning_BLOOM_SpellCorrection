@@ -18,7 +18,7 @@ def Training_Arguments():
     )
     return args
 
-def Trainer(train_loader, validation_loader,model):
+def Trainer(train_loader,model):
     args = Training_Arguments()
     
     trainer = SFTTrainer(
