@@ -1,6 +1,3 @@
-bitsandbytes
-peft
-trl
 datasets
 transformers
 accelerate

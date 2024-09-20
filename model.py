@@ -1,7 +1,5 @@
-from transformers import BitsAndBytesConfig
 import torch
 from transformers import BloomTokenizerFast, BloomForCausalLM
-from peft import LoraConfig
 
 def model_Quantization():
     model_name = "bigscience/bloomz-560m"
